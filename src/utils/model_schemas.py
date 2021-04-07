@@ -13,6 +13,9 @@ class CountrySchema(Schema):
     code = fields.Str(required=True, validate= validate.Length(min=1, max=10))
     price_multiplier = fields.Float(required=True)
 
+    class Meta:
+        ordered = True
+
 
 #UserSchema
 class UserSchema(Schema):
@@ -28,6 +31,10 @@ class UserSchema(Schema):
     map_style = fields.Int()
     display_name = fields.Str(validate=validate.Length(min=1,max=20))
     country_id = fields.Int(required=True)
+    country = fields.Nested(CountrySchema)
+
+    class Meta:
+        ordered = True
 
     @post_load
     def make_user(self, data, **kwargs):
@@ -42,6 +49,10 @@ class TransactionSchema(Schema):
     total_price = fields.Float(required=True)
     total_tiles = fields.Int(required=True)
     user_id = fields.Int(required=True)
+    user = fields.Nested(UserSchema)
+
+    class Meta:
+        ordered = True
 
     @post_load
     def make_transaction(self, data, **kwargs):
@@ -59,6 +70,11 @@ class TileSchema(Schema):
     date_changed = fields.DateTime()
     country_id = fields.Int(required=True)
     user_id = fields.Int(required=True)
+    country = fields.Nested(CountrySchema)
+    user = fields.Nested(UserSchema)
+
+    class Meta:
+        ordered = True
 
     @post_load
     def make_tile(self, data, **kwargs):
@@ -70,6 +86,10 @@ class TransactionDetailSchema(Schema):
     unit_price = fields.Float(required=True)
     transaction_id = fields.Int(required=True)
     tile_id = fields.Int(required=True)
+    tile = fields.Nested(TileSchema)
+
+    class Meta:
+        ordered = True
 
     @post_load
     def make_transaction_detail(self, data, **kwargs):
