@@ -1,4 +1,8 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, post_load
+from src.models.users import User
+from src.models.transactions import Transaction
+from src.models.tiles import Tile
+from src.models.transaction_details import TransactionDetail
 
 
 #CountrySchema
@@ -25,6 +29,9 @@ class UserSchema(Schema):
     display_name = fields.Str()
     country_id = fields.Int()
 
+    @post_load
+    def make_user(self, data, **kwargs):
+        return User(**data)
 
 #TransactionSchema
 class TransactionSchema(Schema):
@@ -35,6 +42,10 @@ class TransactionSchema(Schema):
     total_price = fields.Float()
     total_tiles = fields.Int()
     user_id = fields.Int()
+
+    @post_load
+    def make_transaction(self, data, **kwargs):
+        return Transaction(**data)
 
 
 #TileSchema
@@ -49,6 +60,9 @@ class TileSchema(Schema):
     country_id = fields.Int()
     user_id = fields.Int()
 
+    @post_load
+    def make_tile(self, data, **kwargs):
+        return Tile(**data)
 
 #TransactionDetailSchema
 class TransactionDetailSchema(Schema):
@@ -56,3 +70,7 @@ class TransactionDetailSchema(Schema):
     unit_price = fields.Float()
     transaction_id = fields.Int()
     tile_id = fields.Int()
+
+    @post_load
+    def make_transaction_detail(self, data, **kwargs):
+        return TransactionDetail(**data)
