@@ -2,6 +2,7 @@ from src.utils.db_base import Base
 from sqlalchemy import Column, Integer, String, SmallInteger, ForeignKey
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import relationship
+from src.models.countries import Country
 
 
 class User(Base):
