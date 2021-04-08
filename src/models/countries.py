@@ -1,7 +1,5 @@
 from sqlalchemy import Column, Integer, String, SmallInteger, Float, func
 from sqlalchemy.orm import relationship
-#from src.models.users import User
-#from src.models.tiles import Tile
 from src.utils.db_base import Base
 
 class Country(Base):
