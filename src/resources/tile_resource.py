@@ -62,7 +62,7 @@ class TilesInsertResource(object):
                 db_session.add(tile)
             try:
                 db_session.commit()
-                resp.status = falcon.HTTP_200
+                resp.status = falcon.HTTP_201
                 resp.body = json.dumps({"message":"Successfully added tiles!"})
             except:
                 db_session.rollback()
