@@ -3,7 +3,8 @@ from sqlalchemy import Column, Integer, String, SmallInteger, Float, ForeignKey
 from sqlalchemy import DateTime, func
 from datetime import datetime
 from sqlalchemy.orm import relationship
-#from src.models.transaction_details import TransactionDetail
+from src.models.countries import Country
+from src.models.users import User
 
 
 class Tile(Base):

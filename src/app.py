@@ -1,14 +1,16 @@
 import falcon
 import json
-#from app.config import db_session, init_session
-#from app.middleware import JSONTranslator
-#import app.views
+from src.resources.user_resource import UsersResource, UserResource
+from src.resources.tile_resource import TilesGetResource, TilesInsertResource
 
 
-#api = falcon.API(middleware=[JSONTranslator()])
-#api.add_route('/tasks/', views.TaskResource())
+api = falcon.App()
+api.add_route('/users', UsersResource())
+api.add_route('/users/{user_id}', UserResource())
+api.add_route('/tiles/gettilesbyquadkeys', TilesGetResource())
+api.add_route('/tiles/{user_id}', TilesGetResource())
+api.add_route('/tiles', TilesInsertResource())
 
 
-init_session()
 if __name__ == "__main__":
    api.run(host="0.0.0.0", debug=True)

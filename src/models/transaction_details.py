@@ -2,6 +2,8 @@ from src.utils.db_base import Base
 from sqlalchemy import Column, Integer, ForeignKey, Float, String
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import relationship
+from src.models.transactions import Transaction
+from src.models.tiles import Tile
 
 
 class TransactionDetail(Base):
