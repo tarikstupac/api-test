@@ -67,7 +67,7 @@ class TilesInsertResource(object):
             except:
                 db_session.rollback()
                 resp.status = falcon.HTTP_400
-                resp.body = json.dumps({"message":"Problem while adding tiles to db"})
+                resp.body = json.dumps({"message":"Problem while adding tiles to db (existing tiles or invalid key)"})
         else:
             resp.status = falcon.HTTP_400
             resp.body = json.dumps({"message":"You need to add at least one tile."})
