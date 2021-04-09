@@ -70,8 +70,7 @@ class TileSchema(Schema):
     date_changed = fields.DateTime()
     country_id = fields.Int(required=True)
     user_id = fields.Int(required=True)
-    country = fields.Nested(CountrySchema)
-    user = fields.Nested(UserSchema)
+
 
     class Meta:
         ordered = True
